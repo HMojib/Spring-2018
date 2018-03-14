@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Fun with Sockets!</title>
+	<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js'></script>
+	<script type='text/javascript'>
+		var socket = io('http://localhost:3000', {path: '/socket.io'}); // connect to server
+		socket.on('fromServer', function(data) { // listen for fromServer message
+			console.log('Received ' + data.id + ' from server');
+			socket.emit('fromClient', {id: 'Oh! Hi there ...'}); // send fromClient message to server
+		});
+		
+		socket.on('fromServer2', function(data) { // listen for fromServer message
+			console.log('Received ' + data.id + ' from server');
+			socket.emit('fromClient2', {id: 'Great!'}); // send fromClient message to server
+		});
+	</script>
+	
+  </head>
+  <body>
+  <h1>FUN WITH SOCKETS!</h1>
+  </body>
+</html>
